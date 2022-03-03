@@ -22,7 +22,7 @@
     <tr v-for="(task, index) in tasks" :key="index">
       <td>{{task.name}} </td>
       <td>
-           <span class="pointer">{{task.status}}</span>
+           <span @click= "cambiarEstado(index)" class="pointer">{{task.status}}</span>
     </td>
       <td>
           <div class="text-center" @click="editarTask(index)">
@@ -91,6 +91,14 @@ props: {
           this.task = this.tasks[index].name;
           this.editedTask = index;
        },
+       
+       
+       cambiarEstado(index){
+           let newIndex = this.estados.indexOf(this.tasks[index].status);
+        if(++newIndex > 2) newIndex = 0;
+        this.tasks[index].status = this.estados[newIndex];
+
+       }
        
 
     }
